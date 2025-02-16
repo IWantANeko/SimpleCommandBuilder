@@ -1,0 +1,25 @@
+{
+    "format_version": 2,
+    "header": {
+        "name": "Simple Command Builder",
+        "description": "Simple Command Builder",
+        "uuid": "5f1944b9-2098-4c9d-93ed-6cb72ab1c157",
+        "version": [1, 0, 0],
+        "min_engine_version": [1, 20, 0]
+    },
+    "modules": [
+        {
+            "version": [1, 0, 0],
+            "uuid": "1dd1c304-f915-43db-b99a-ba7865b5b1d0",
+            "type": "script",
+            "language": "javascript",
+            "entry": "scripts/Main.js"
+        }
+    ],
+    "dependencies": [
+        {
+            "module_name": "@minecraft/server",
+            "version": "1.18.0-beta"
+        }
+    ]
+}
