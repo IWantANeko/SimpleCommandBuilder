@@ -11,36 +11,30 @@ export const config = {
 //* COMMAND MANAGER
 
 export class CommandManager {
-    private commands: Command[];
+    private commands: Map<string, Command>;
 
     public constructor() {
-        this.commands = [];
+        this.commands = new Map();
     }
 
-    public registerCommand(command: Command): void {
-        this.commands.push(command);
+    public registerCommands(...commands: Command[]): void {
+        for (const command of commands) {
+            for (const alias of command.aliases) {
+                this.commands.set(alias, command);
+            }
+        }
     }
 
-    public getCommands(): Command[] {
-        return this.commands;
+    public getCommands(): MapIterator<Command> {
+        return this.commands.values();
     }
 
     public getCommandByAlias(alias: string): Command | undefined {
-        for (const command of this.commands) {
-            if (command.aliases.includes(alias)) {
-                return command;
-            }
-        }
+        return this.commands.get(alias);
     }
 
     public hasCommandByAlias(alias: string): boolean {
-        for (const command of this.commands) {
-            if (command.aliases.includes(alias)) {
-                return true;
-            }
-        }
-
-        return true;
+        return this.commands.has(alias);
     }
 
     public executeCommand(player: Player, args: string[], command: Command): void {
@@ -92,10 +86,6 @@ export class Command {
         this.permission = { permissions, every };
         return this;
     }
-
-    public registerCommand(): void {
-        commandManager.registerCommand(this);
-    }
 }
 
 /////////////////////////////////////////////////////////////////////////////////////7
@@ -134,16 +124,13 @@ export class MessageHandler {
 
 export class InputHandler {
     public static onMessage(player: Player, message: string): Error | void {
-        if (!message.startsWith(config.commandPrefix)) return new Error(`Not a command.`);
-
         const [command, args] = MessageHandler.parseRawCommandMessage(message);
         const commandInstance = commandManager.getCommandByAlias(command);
 
         if (commandInstance === undefined) return new Error(`Command "${command}" not found.`);
 
         if (!commandManager.checkPermissions(player, commandInstance)) {
-            player.sendMessage("§cYou don't have permission to use this command.");
-            return new Error(`Player "${player.name}" doesn't have permission to use the command "${command}".`);
+            return new Error(`You do not have permission to use this command.`);
         }
 
         commandManager.executeCommand(player, args, commandInstance);
