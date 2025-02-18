@@ -13,7 +13,7 @@
             "uuid": "1dd1c304-f915-43db-b99a-ba7865b5b1d0",
             "type": "script",
             "language": "javascript",
-            "entry": "scripts/Main.js"
+            "entry": "scripts/index.js"
         }
     ],
     "dependencies": [
