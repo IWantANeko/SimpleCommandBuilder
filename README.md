@@ -9,6 +9,10 @@ A simple command manager system for Minecraft Bedrock Edition in TypeScript. It 
 - Parse command messages and arguments.
 - Flexible permission system (all or any permission required).
 
+- **Node.js** (version 14.0.0 or higher)
+
+Make sure you have Node.js installed on your machine. You can download it from [here](https://nodejs.org/).
+
 ## Installation
 
 1. Clone the repo:
