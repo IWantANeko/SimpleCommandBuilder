@@ -1,0 +1,12 @@
+{
+  "name": "minecraft-command-manager",
+  "version": "1.0.0",
+  "description": "A simple command manager system for Minecraft Bedrock Edition in TypeScript",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^4.0.0"
+  }
+}
