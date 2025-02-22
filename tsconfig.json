@@ -1,26 +1,22 @@
 {
     "compilerOptions": {
-        "target": "ES6",
-        "module": "none",
-        "lib": ["ES6"],
-        "moduleResolution": "node",
+        "lib": ["esnext"],
+        "target": "esnext",
+        "module": "esnext",
+        "moduleResolution": "node10",
         "outDir": "./scripts",
         "rootDir": "./source",
-        "esModuleInterop": true,
-        "allowJs": true,
-        "skipLibCheck": true,
-        "strict": true,
-        "forceConsistentCasingInFileNames": true,
-        "noEmitOnError": true,
-        "allowImportingTsExtensions": false,
-        "removeComments": true,
+        "allowJs": false,
+        "checkJs": false,
+        "useDefineForClassFields": true,
+        "noImplicitReturns": true,
+        "noUnusedLocals": true,
+        "noImplicitAny": true,
+        "alwaysStrict": true,
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitThis": true,
+        "noUnusedParameters": true
     },
-    "include": [
-        "source/**/*.ts"
-    ],
-    "exclude": [
-        "node_modules",
-        "**/.*",
-        "**/.*/",
-    ]
+    "include": ["source"],
+    "exclude": ["node_modules"]
 }
