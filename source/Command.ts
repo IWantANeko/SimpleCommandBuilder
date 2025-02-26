@@ -11,18 +11,14 @@ export const config = {
 //* COMMAND MANAGER
 
 export class CommandManager {
-    private commands: Map<string, Command>;
+    private commands: Command[];
 
     public constructor() {
-        this.commands = new Map();
+        this.commands = []
     }
 
     public registerCommands(...commands: Command[]): void {
-        for (const command of commands) {
-            for (const alias of command.aliases) {
-                this.commands.set(alias, command);
-            }
-        }
+        this.commands.push(...commands);
     }
 
     public getCommands(): MapIterator<Command> {
@@ -30,11 +26,11 @@ export class CommandManager {
     }
 
     public getCommandByAlias(alias: string): Command | undefined {
-        return this.commands.get(alias);
+        return this.commands.find(command => command.aliases.includes(alias));
     }
 
     public hasCommandByAlias(alias: string): boolean {
-        return this.commands.has(alias);
+        return this.commands.some(command => command.aliases.includes(alias));
     }
 
     public executeCommand(player: Player, args: string[], command: Command): void {
